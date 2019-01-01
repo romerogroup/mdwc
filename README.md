@@ -14,6 +14,7 @@ For its correct functioning mlmd needs the following codes:
 
 2. [Numpy](http://www.numpy.org/ "Numpy") >= 1.1 1
 
+* [Abinit](https://www.abinit.org/) to use the mdwc_
 
 mdwc user manual
 ----------------

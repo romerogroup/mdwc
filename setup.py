@@ -8,8 +8,8 @@ setup(
    author="Arturo Hernandez",
    author_email="my@email.com",
    description="Example package to demonstrate wheel issue",
-   packages=['mdwc', 'mdwc.software_tools', 'mdwc.MD_suit'],
-   ext_modules=[Extension('mdwc.MD_suit.MD_suit',
-                          ['mdwc/MD_suit/MD_suit.f90'])],
+   packages=['mdwc', 'mdwc.software_tools', 'mdwc.MD_suite'],
+   ext_modules=[Extension('mdwc.MD_suite.MD_suite',
+                          ['mdwc/MD_suite/MD_suite.f90'])],
    scripts=['scripts/mdwc_']
 )

@@ -6,7 +6,7 @@ import os.path
 import time
 import mdwc.software_tools.abinit_controller as ac
 #import npt_MD_suit as md_ft
-import mdwc.MD_suit.MD_suit as md_ft
+import mdwc.MD_suite.MD_suite as md_ft
 import argparse
 
 def write_md_output(path, bond_const, angl_const, pressure_out, volu_out, bond_constrain_out, cos_constrain_out):
@@ -101,20 +101,20 @@ for i_abinit_step in range(abinit_steps):
 		#print 'x_t.shape', x_t.shape
 		#print 'f_t.shape', f_t.shape
 		#F_redu_t= np.dot(h_t_inv, f_t)
-		v_t= md_ft.npt_md_suit.init_vel_atoms(mass, temp, len(mass))
+		v_t= md_ft.npt_md_suite.init_vel_atoms(mass, temp, len(mass))
 		#print 'v_t.shape', v_t.shape
 		#print 'F_redu_t.shape', F_redu_t.shape
 		#once abinit provide the force and streints we can start the md
 		#1) init velocityes
 		#v_t= md.init_vel_atoms(mass, temp, len(mass))
-		h_t_dot= md_ft.npt_md_suit.init_vel_lattice(bmass, temp, h_t)
-		x_t_dot= md_ft.npt_md_suit.get_x_dot(h_t, v_t, nat)
+		h_t_dot= md_ft.npt_md_suite.init_vel_lattice(bmass, temp, h_t)
+		x_t_dot= md_ft.npt_md_suite.get_x_dot(h_t, v_t, nat)
 		#out= md.md_npt_step(dt, md_steps, mass, Qmass, bmass, temp, correc_steps, x_t, x_t_dot, v_t, F_redu_t,\
 		#            h_t, h_t_dot, strten_in, P_ext, s_t, s_t_dot)
 		if input_para['NVT'] == False:
 			s_out, s_out_dot, pressure_out, volu_out,\
 			bond_constrain_out, cos_constrain_out, h_out,\
-			h_dot_out, x_out, x_dot_out, v_out= md_ft.npt_md_suit.md_npt_constrains(h_t,x_t, \
+			h_dot_out, x_out, x_dot_out, v_out= md_ft.npt_md_suite.md_npt_constrains(h_t,x_t, \
 																x_t_dot, f_t, strten_in,v_t,h_t_dot,\
 																bond_valu, angl_valu, cell_para_valu,\
 																cell_angl_valu, volu_valu, atom_fix_valu,atom_fix_cord,\
@@ -145,7 +145,7 @@ for i_abinit_step in range(abinit_steps):
 				pressure_volu_file.write('%d          %d               %d             %.3f         %.3E                         %.3f\n'\
 				%(i+1,i_abinit_step+1,(i_abinit_step*md_steps+i+1),md_time,pre,vol))
 		else:
-			s_out, s_out_dot, x_out, v_out= md_ft.npt_md_suit.md_nvt_constrains(h_t,x_t, \
+			s_out, s_out_dot, x_out, v_out= md_ft.npt_md_suite.md_nvt_constrains(h_t,x_t, \
 																f_t,v_t,\
 																bond_valu, angl_valu,\
 																atom_fix_valu,atom_fix_cord,mass,\
@@ -197,7 +197,7 @@ for i_abinit_step in range(abinit_steps):
 		if input_para['NVT'] == False:
 			s_out, s_out_dot, pressure_out, volu_out,\
 			bond_constrain_out, cos_constrain_out, h_out,\
-			h_dot_out, x_out, x_dot_out, v_out= md_ft.npt_md_suit.md_npt_constrains(h_t,x_t, \
+			h_dot_out, x_out, x_dot_out, v_out= md_ft.npt_md_suite.md_npt_constrains(h_t,x_t, \
 																x_t_dot, f_t, strten_in,v_t,h_t_dot,\
 																bond_valu, angl_valu, cell_para_valu,\
 																cell_angl_valu, volu_valu, atom_fix_valu,atom_fix_cord,\
@@ -228,7 +228,7 @@ for i_abinit_step in range(abinit_steps):
 				pressure_volu_file.write('%d          %d               %d             %.3f         %.3E                         %.3f\n'\
 				%(i+1,i_abinit_step+1,(i_abinit_step*md_steps+i+1),md_time,pre,vol))
 		else:#input_para['NVT'] == False
-			s_out, s_out_dot, x_out, v_out= md_ft.npt_md_suit.md_nvt_constrains(h_t,x_t, \
+			s_out, s_out_dot, x_out, v_out= md_ft.npt_md_suite.md_nvt_constrains(h_t,x_t, \
 												f_t,v_t,\
 												bond_valu, angl_valu,\
 												atom_fix_valu,atom_fix_cord,mass,\

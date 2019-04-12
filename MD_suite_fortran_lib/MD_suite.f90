@@ -1,4 +1,4 @@
-module npt_MD_suite
+module MD_suite
 
 implicit none
 
@@ -3369,4 +3369,4 @@ contains
 		as_t= (asvt/s_t - (ndf+1)*kb_HaK*temp/s_t)/Qmass
 		return
 	end subroutine testing_as
-end module npt_MD_suite
+end module MD_suite

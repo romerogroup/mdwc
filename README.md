@@ -18,7 +18,7 @@ For its correct functioning mlmd needs the following codes:
 
 mdwc user manual
 ----------------
-
+[mdwc](https://molecular-dynamics-with-constraints.github.io/)
 
 Contributors
 ------------

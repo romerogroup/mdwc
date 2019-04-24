@@ -20,9 +20,18 @@ masses = [0.0, 1.00794, 4.002602, 6.941, 9.012182, 10.811, 12.011, 14.00674, 15.
 def get_nat_mass_latvec_in_strten_in(path_to_file):
     data= open(path_to_file).read()
     nat= int(re.findall('natom\s+([0-9]+)', data)[0])
-    typat= map(int, re.findall('\s+typat\s+(.+)',data)[0].split())
+    typat_str_0= '\s+typat\s+'
+    typat_srt_1='.+'
+    typat_str=typat_str_0+'('+typat_srt_1+')'
+    typat= map(int, re.findall(typat_str,data)[0].split())
     #znucl= map(float, re.findall('\s+znucl((?:\s+\d+.\d+\s+)+)',data))
     znucl= map(int, map(float, re.findall('\s+znucl\s+(.+)',data)[0].split()))
+    while len(typat) < nat:
+        typat_srt_1= typat_srt_1+'\n.+'
+        typat_str=typat_str_0+'('+typat_srt_1+')'
+        #x= re.findall('\s+typat\s+(.+)',data)
+        #print x
+        typat= map(int, re.findall(typat_str,data)[0].split())
     mass=[]
     for i in typat:
         mass.append(masses[znucl[i-1]])
